@@ -29,3 +29,6 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
         echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php
     fi
 fi
+
+# Run database update
+#/usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
