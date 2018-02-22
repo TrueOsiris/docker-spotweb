@@ -34,3 +34,5 @@ if [ ! -f /config/ownsettings.php ]; then
     echo "> Creating symlink to /config/ownsettings.php in /www/spotweb/ ..."
     ln -s /config/ownsettings.php /www/spotweb/ownsettings.php
 fi
+
+sed -i 's/\;extension=php_mysqli.dll/extension=php_mysqli.dll/' /etc/php/7.0/apache2/php.ini
