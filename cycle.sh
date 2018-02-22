@@ -42,6 +42,7 @@ fi
 if [ $((`date +%M` % 10)) = 0 ]; then
     if [ $((`date +%S` % 60)) = 0 ]; then
   	# every 10 minutes  
+	/usr/bin/php /var/www/spotweb/retrieve.php >/config/retrieve.log 2>&1
     fi
 fi
 
