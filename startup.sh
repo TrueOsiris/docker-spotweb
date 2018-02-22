@@ -21,9 +21,7 @@ else
     #rm /www/spotweb/dbsettings.inc.php 2>/dev/null
     echo "> Creating symlink to /config/dbsettings.inc.php in /www/spotweb/ ..."
     ln -s /config/dbsettings.inc.php /www/spotweb/dbsettings.inc.php 2>/dev/null
-    echo "> Running database upgrade ..."
-    # Run database update
-    /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
+
     # creating file, so previous statements only run once.
     echo -e "Do not remove this file.\nIf you do, container will be fully reset on next start." > /config/$(echo $initfile)
     date >> /config/$(echo $initfile)
