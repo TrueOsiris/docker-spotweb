@@ -1,4 +1,4 @@
-# webserver
+# spotweb
 
 Base webserver with 2 external volumes : /config & /www \
 /config holds all apache2 & php7.0 config files \
@@ -16,10 +16,10 @@ docker create \
  --name webserver  \
  --restart=unless-stopped \
  -v "/var/run/docker.sock:/var/run/docker.sock" \
- trueosiris/webserver
+ trueosiris/spotweb
 
-docker container start webserver
+docker container start spotweb
 
-docker exec -it webserver /bin/bash
+docker exec -it spotweb /bin/bash
 
-docker logs -f webserver
+docker logs -f spotweb
