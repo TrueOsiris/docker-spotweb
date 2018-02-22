@@ -14,11 +14,17 @@ if [[ -z "$SPOTWEB_DB_PASS" ]]; then
 fi
 
 if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" && -n "$SPOTWEB_DB_USER" && -n "$SPOTWEB_DB_PASS" ]]; then
-    echo "Spotweb db params are set. Creating database configuration ..."
+    # echo "Spotweb db params are set. Creating database configuration ..."
     if [[ -s /config/dbsettings.inc.php ]]; then
-       	echo "$(date +%S)"
- 	if [ $((`date +%S` % 5)) = 0 ]; then
-		echo "test" 
+       	# echo "$(date +%S)"
+	# every 15 seconds, reapply the dbsettings
+ 	if [ $((`date +%S` % 15)) = 0 ]; then
+            echo "<?php" > /config/dbsettings.inc.php
+            echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
+            echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
+            echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
+            echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
+            echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php 
 	fi
     else
         echo "<?php" > /config/dbsettings.inc.php
