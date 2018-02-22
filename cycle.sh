@@ -39,5 +39,11 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
     fi
 fi
 
+if [ $((`date +%M` % 10)) = 0 ]; then
+    if [ $((`date +%S` % 60)) = 0 ]; then
+  	# every 10 minutes  
+    fi
+fi
+
 # Run database update
 #/usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
