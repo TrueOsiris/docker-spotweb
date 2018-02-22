@@ -27,6 +27,9 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
         echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
         echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
         echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php
+        echo "> Running database upgrade ..."
+	# this should just run once, as dbsettings.inc.php started empty ...
+        /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
     fi
 fi
 
