@@ -17,7 +17,7 @@ else
     echo "> Creating /config/dbsettings.inc.php ..."
     touch /config/dbsettings.inc.php 2>/dev/null
     echo "> Changing ownership of /config/dbsettings.inc.php ..."
-    chown www-data:www-data /config/dbsettings.inc.php
+    chown www-data:www-data /config/dbsettings.inc.php 2>&1
     #rm /www/spotweb/dbsettings.inc.php 2>/dev/null
     echo "> Creating symlink to /config/dbsettings.inc.php in /www/spotweb/ ..."
     ln -s /config/dbsettings.inc.php /www/spotweb/dbsettings.inc.php 2>/dev/null
