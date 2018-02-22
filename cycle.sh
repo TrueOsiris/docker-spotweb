@@ -18,13 +18,15 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
     if [[ -s /config/dbsettings.inc.php ]]; then
        	# echo "$(date +%S)"
 	# every 30 seconds, reapply the dbsettings
- 	if [ $((`date +%S` % 30)) = 0 ]; then
-            echo "<?php" > /config/dbsettings.inc.php
-            echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
-            echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
-            echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
-            echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
-            echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php 
+	if [ $((`date +%M` % 2)) = 0 ]; then
+ 	    if [ $((`date +%S` % 60)) = 0 ]; then
+                echo "<?php" > /config/dbsettings.inc.php
+                echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
+                echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
+                echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
+                echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
+                echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php 
+	    fi
 	fi
     else
         echo "<?php" > /config/dbsettings.inc.php
