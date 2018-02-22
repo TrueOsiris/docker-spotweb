@@ -48,7 +48,7 @@ if [[ -z "$SPOTWEB_DB_PASS" ]]; then
 fi
 
 if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" && -n "$SPOTWEB_DB_USER" && -n "$SPOTWEB_DB_PASS" ]]; then
-#    echo "Creating database configuration"
+    echo "Spotweb db params are set. Creating database configuration ..."
     if [[ -s /config/dbsettings.inc.php ]]; then
        	echo "$(date +%S)"
  	if [ $((`date +%S` % 5)) = 0 ]; then
