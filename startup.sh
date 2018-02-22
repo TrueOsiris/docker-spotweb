@@ -45,8 +45,9 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
         echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
         echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php
     else
-        MINZ=$(date +%M)
-        SECZ=$(date +%S)
-        echo "$MINZ $SECZ"
+    	echo "$(date +%S)"
+ 	if [ $((`date +%S` % 5)) = 0 ]; then
+		echo "test" 
+	fi
     fi
 fi
