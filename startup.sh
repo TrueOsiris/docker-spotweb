@@ -5,6 +5,7 @@ initfile=$(echo $HOST_HOSTNAME)\spotweb.initialised
 if [ -f /config/$(echo $initfile) ]; then
     echo 'initial configuration done.'
 else    
+    chmod -R 777 /www 2>&1
     git clone https://github.com/TrueOsiris/spotweb.git /www/spotweb
     chown -R www-data:www-data /www/spotweb
     echo "<? header('Location: /spotweb/'); ?>" > /www/index.php
