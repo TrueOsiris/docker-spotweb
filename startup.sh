@@ -8,10 +8,10 @@ else
     git clone https://github.com/TrueOsiris/spotweb.git /www/spotweb
     chown -R www-data:www-data /www/spotweb
     echo "<? header('Location: /spotweb/'); ?>" > /www/index.php
-    touch /config/dbsettings.inc.php
+    touch /config/dbsettings.inc.php 2>/dev/null
     chown www-data:www-data /config/dbsettings.inc.php
-	rm /www/spotweb/dbsettings.inc.php
-	ln -s /config/dbsettings.inc.php /www/spotweb/dbsettings.inc.php
+    rm /www/spotweb/dbsettings.inc.php 2>/dev/null
+    ln -s /config/dbsettings.inc.php /www/spotweb/dbsettings.inc.php 2>/dev/null
     # creating file, so previous statements only run once.
     echo -e "Do not remove this file.\nIf you do, container will be fully reset on next start." > /config/$(echo $initfile)
     date >> /config/$(echo $initfile)
