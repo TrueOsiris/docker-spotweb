@@ -3,7 +3,7 @@
 set -e
 initfile=$(echo $HOST_HOSTNAME)\spotweb.initialised
 if [ -f /config/$(echo $initfile) ]; then
-    echo 'initial configuration done.'
+    echo 'initial spotweb configuration done.'
 else    
     chmod -R 777 /www 2>&1
     echo "> Cloning into /www/spotweb ..."
