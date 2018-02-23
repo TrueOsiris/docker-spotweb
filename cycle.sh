@@ -65,6 +65,7 @@ if [ $((`date +%M` % 5)) = 0 ]; then
     fi
 fi
 
+# every 24 hours at 0h00:00, cycle the retrieve.log file
 if [ $((`date +%H` % 24)) = 0 ]; then
     if [ $((`date +%M` % 60)) = 0 ]; then
         if [ $((`date +%S` % 60)) = 0 ]; then
