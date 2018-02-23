@@ -58,7 +58,7 @@ if [ $((`date +%M` % 15)) = 0 ]; then
 	echo "> Retrieval of new spots starting at $(date) ..."
 	echo "> Retrieval of new spots starting at $(date) ..." >>/config/retrieve.log
 	if [[ -s $(echo $initfile) ]]; then
-	    /usr/bin/php /www/spotweb/retrieve.php & >>/config/retrieve.log 2>&1
+	    /usr/bin/php /www/spotweb/retrieve.php >>/config/retrieve.log 2>&1
 	    echo "> Retrieval finished at $(date)."
 	    echo "> Retrieval finished at $(date)." >>/config/retrieve.log
 	fi
