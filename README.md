@@ -11,11 +11,10 @@ Base webserver with 2 external volumes : /config & /www \
  -e TZ=Europe/Brussels 
  --name spotweb 
  --restart=unless-stopped 
- trueosiris/spotweb` 
+ trueosiris/spotweb` \
 \
 `docker container start spotweb` \
 \
 `docker exec -it spotweb /bin/bash` \
 \
 `docker logs -f spotweb` \
-\
