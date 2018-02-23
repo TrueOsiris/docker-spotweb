@@ -4,7 +4,8 @@ Base webserver with 2 external volumes : /config & /www \
 volume /config holds all apache2 & php7.0 config files \
 volume /www is the entire webroot \
 \
-Works with an external mysql database container (not included). \
+Works with an external mysql or mariadb database container (not included). \
+There isn't one running on localhost. \
 \
 At the start, point your browser to install.php & do the config. \
 Everything is stored in the /config folder, so you can easily edit the files in the volume. \
