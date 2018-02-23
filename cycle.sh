@@ -1,6 +1,7 @@
 #!/bin/bash
 
-initfile=spotweb.database.initialised
+initfile=/config/spotweb.database.initialised
+dbfile=/config/dbsettings.inc.php.sample
 
 if [[ -z "$SPOTWEB_DB_TYPE" ]]; then
     SPOTWEB_DB_TYPE="mysql"
@@ -17,37 +18,37 @@ fi
 
 if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" && -n "$SPOTWEB_DB_USER" && -n "$SPOTWEB_DB_PASS" ]]; then
     # echo "Spotweb db params are set. Creating database configuration ..."
-    if [[ -s /config/dbsettings.inc.php ]]; then
-	if [ ! -f /config/$(echo $initfile) ]; then
-	    touch /config/$(echo $initfile) 
+    if [[ -s $(echo $dbfile) ]]; then
+	if [ ! -f $(echo $initfile) ]; then
+	    touch $(echo $initfile) 
             # this should just run once, as dbsettings.inc.php started empty ...
-	    mydate=$(date)
+	    mydate=date
 	    echo "> Running database upgrade ..."
-            /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
+            /usr/bin/php /www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
 	    echo "> Database upgrade done." 
-	    echo "Start db upgrade at $(mydate)" >> /config/$(echo $initfile)
-	    echo "Finished at $(date)" >> /config/$(echo $initfile)
+	    echo "Start db upgrade at $(mydate)" >> $(echo $initfile)
+	    echo "Finished at $(date)" >> $(echo $initfile)
 	fi
        	# echo "$(date +%S)"
 	# every 60 mins, reapply the dbsettings
 	if [ $(($(date +%M) % 60)) = 0 ]; then
  	    if [ $(($(date +%S) % 60)) = 0 ]; then
-	    	echo "> Reapplying db settings to /config/dbsettings.inc.php at $(date)"
-                echo "<?php" > /config/dbsettings.inc.php
-                echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
-                echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
-                echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
-                echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
-                echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php 
+	    	echo "> Reapplying db settings to $dbfile at $(date)"
+                echo "<?php" > $dbfile
+                echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> $dbfile
+                echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> $dbfile
+                echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> $dbfile
+                echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> $dbfile
+                echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> $dbfile
 	    fi
 	fi
     else
-        echo "<?php" > /config/dbsettings.inc.php
-        echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
-        echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
-        echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
-        echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
-        echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php
+        echo "<?php" > $dbfile
+        echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> $dbfile
+        echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> $dbfile
+        echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> $dbfile
+        echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> $dbfile
+        echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> $dbfile
     fi
 fi
 
