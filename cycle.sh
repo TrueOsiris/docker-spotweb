@@ -16,6 +16,14 @@ fi
 if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" && -n "$SPOTWEB_DB_USER" && -n "$SPOTWEB_DB_PASS" ]]; then
     # echo "Spotweb db params are set. Creating database configuration ..."
     if [[ -s /config/dbsettings.inc.php ]]; then
+    	initfile=$(echo $HOST_HOSTNAME)\spotweb.database.initialised
+	if [ ! -f /config/$(echo $initfile) ]; then
+	    touch /config/$(echo $initfile) 
+            # this should just run once, as dbsettings.inc.php started empty ...
+	    echo "> Running database upgrade ..."
+            /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
+	    echo "> Database upgrade done." 
+	    echo "Finished $(date)" >> /config/$(echo $initfile)
        	# echo "$(date +%S)"
 	# every 2 mins, reapply the dbsettings
 	if [ $(($(date +%M) % 2)) = 0 ]; then
@@ -35,9 +43,6 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
         echo "\$dbsettings['dbname'] = '$SPOTWEB_DB_NAME';"  >> /config/dbsettings.inc.php
         echo "\$dbsettings['user'] = '$SPOTWEB_DB_USER';" >> /config/dbsettings.inc.php
         echo "\$dbsettings['pass'] = '$SPOTWEB_DB_PASS';"  >> /config/dbsettings.inc.php
-        echo "> Running database upgrade ..."
-	# this should just run once, as dbsettings.inc.php started empty ...
-        /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
     fi
 fi
 
