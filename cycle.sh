@@ -65,3 +65,15 @@ if [ $((`date +%M` % 5)) = 0 ]; then
     fi
 fi
 
+if [ $((`date +%H` % 24)) = 0 ]; then
+    if [ $((`date +%M` % 60)) = 0 ]; then
+        if [ $((`date +%S` % 60)) = 0 ]; then
+	    mv /config/retrieve.4.log /config/retrieve.5.log 2>/dev/null
+	    mv /config/retrieve.3.log /config/retrieve.4.log 2>/dev/null
+	    mv /config/retrieve.2.log /config/retrieve.3.log 2>/dev/null
+	    mv /config/retrieve.1.log /config/retrieve.2.log 2>/dev/null
+	    mv /config/retrieve.log /config/retrieve.1.log
+	    touch /config/retrieve.log
+	fi
+    fi
+fi
