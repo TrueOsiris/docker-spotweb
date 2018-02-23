@@ -1,6 +1,6 @@
 #!/bin/bash
 
-initfile=$(echo $HOST_HOSTNAME)\.database.initialised
+initfile=spotweb.database.initialised
 
 if [[ -z "$SPOTWEB_DB_TYPE" ]]; then
     SPOTWEB_DB_TYPE="mysql"
