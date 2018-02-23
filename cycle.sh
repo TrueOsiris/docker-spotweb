@@ -51,7 +51,7 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
     fi
 fi
 
-if [ $((`date +%M` % 12)) = 0 ]; then
+if [ $((`date +%M` % 2)) = 0 ]; then
     if [ $((`date +%S` % 60)) = 0 ]; then
   	# every 10 minutes  
 	echo "> Retrieval of new spots starting ..."
