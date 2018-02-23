@@ -21,10 +21,11 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
 	if [ ! -f /config/$(echo $initfile) ]; then
 	    touch /config/$(echo $initfile) 
             # this should just run once, as dbsettings.inc.php started empty ...
+	    echo "Start db upgrade at $(date)" >> /config/$(echo $initfile)
 	    echo "> Running database upgrade ..."
             /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
 	    echo "> Database upgrade done." 
-	    echo "Finished $(date)" >> /config/$(echo $initfile)
+	    echo "Finished at $(date)" >> /config/$(echo $initfile)
 	fi
        	# echo "$(date +%S)"
 	# every 2 mins, reapply the dbsettings
