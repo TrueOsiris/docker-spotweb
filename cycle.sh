@@ -53,6 +53,7 @@ fi
 if [ $((`date +%M` % 12)) = 0 ]; then
     if [ $((`date +%S` % 60)) = 0 ]; then
   	# every 10 minutes  
+	echo "> Retrieval of new spots starting ..."
 	if [[ -s /config/$(echo $initfile) ]]; then
 	    /usr/bin/php /var/www/spotweb/retrieve.php >/config/retrieve.log 2>&1
 	fi
