@@ -52,9 +52,9 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
     fi
 fi
 
-if [ $((`date +%M` % 2)) = 0 ]; then
+if [ $((`date +%M` % 12)) = 0 ]; then
     if [ $((`date +%S` % 60)) = 0 ]; then
-  	# every 10 minutes  
+  	# every 12 minutes  
 	echo "> Retrieval of new spots starting at $(date) ..."
 	if [[ -s /config/$(echo $initfile) ]]; then
 	    /usr/bin/php /www/spotweb/retrieve.php >/config/retrieve.log 2>&1
