@@ -32,7 +32,7 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
 	# every 5 mins, reapply the dbsettings
 	if [ $(($(date +%M) % 5)) = 0 ]; then
  	    if [ $(($(date +%S) % 60)) = 0 ]; then
-	    	echo "> Reapplying db settings to /config/dbsettings.inc.php at $date"
+	    	echo "> Reapplying db settings to /config/dbsettings.inc.php at $(date)"
                 echo "<?php" > /config/dbsettings.inc.php
                 echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
                 echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
@@ -54,7 +54,7 @@ fi
 if [ $((`date +%M` % 2)) = 0 ]; then
     if [ $((`date +%S` % 60)) = 0 ]; then
   	# every 10 minutes  
-	echo "> Retrieval of new spots starting at $date ..."
+	echo "> Retrieval of new spots starting at $(date) ..."
 	if [[ -s /config/$(echo $initfile) ]]; then
 	    /usr/bin/php /var/www/spotweb/retrieve.php >/config/retrieve.log 2>&1
 	fi
