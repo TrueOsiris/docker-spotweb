@@ -79,6 +79,8 @@ if [ $((`date +%H` % 24)) = 0 ]; then
     fi
 fi
 
-if [[ -s /www/spotweb/dbsettings.inc.php ]]; then
-    echo "<? header('Location: /spotweb/install.php'); ?>" > /www/index.php
+if [ $((`date +%S` % 5)) = 0 ]; then
+    if [[ -s /www/spotweb/dbsettings.inc.php ]]; then
+        echo "<? header('Location: /spotweb/install.php'); ?>" > /www/index.php
+    fi
 fi
