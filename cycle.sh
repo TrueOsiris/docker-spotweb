@@ -57,6 +57,7 @@ if [ $((`date +%M` % 15)) = 0 ]; then
   	# every 15 minutes  
 	echo "> Retrieval of new spots starting at $(date) ..."
 	if [[ -s $(echo $initfile) ]]; then
+	    echo "> Retrieving ..."
 	    /usr/bin/php /www/spotweb/retrieve.php --force >/config/retrieve.log 2>&1
 	fi
     fi
