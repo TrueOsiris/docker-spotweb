@@ -32,6 +32,7 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
 	# every 5 mins, reapply the dbsettings
 	if [ $(($(date +%M) % 5)) = 0 ]; then
  	    if [ $(($(date +%S) % 60)) = 0 ]; then
+	    	echo "> Reapplying db settings to /config/dbsettings.inc.php at $date"
                 echo "<?php" > /config/dbsettings.inc.php
                 echo "\$dbsettings['engine'] = '$SPOTWEB_DB_TYPE';" >> /config/dbsettings.inc.php
                 echo "\$dbsettings['host'] = '$SPOTWEB_DB_HOST';" >> /config/dbsettings.inc.php
