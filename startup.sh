@@ -35,4 +35,4 @@ if [ ! -f /config/ownsettings.php ]; then
     ln -s /config/ownsettings.php /www/spotweb/ownsettings.php
 fi
 
-sed -i 's/\;extension=php_mysqli.dll/extension=php_mysqli.dll/' /etc/php/7.0/apache2/php.ini
+sed -i 's/\;;extension=php_curl.dll/;extension=php_curl.dll/' /etc/php/7.0/apache2/php.ini
