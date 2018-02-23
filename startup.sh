@@ -35,5 +35,7 @@ if [ ! -f /config/ownsettings.php ]; then
     ln -s /config/ownsettings.php /www/spotweb/ownsettings.php
 fi
 
+echo "Startup done at $(date)" > /config/retrieve.log
+
 
 
