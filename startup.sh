@@ -38,3 +38,5 @@ fi
 sed -i 's/\;extension=php_curl.dll/extension=php_curl.dll/' /etc/php/7.0/apache2/php.ini
 sed -i 's/\;extension=php_mbstring.dll/extension=php_mbstring.dll/' /etc/php/7.0/apache2/php.ini
 sed -i 's/\;extension=php_xmlrpc.dll/extension=php_xmlrpc.dll/' /etc/php/7.0/apache2/php.ini
+
+
