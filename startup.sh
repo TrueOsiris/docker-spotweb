@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-initfile=$(echo $HOST_HOSTNAME)\.initialised
+initfile=spotweb.initialised
 if [ -f /config/$(echo $initfile) ]; then
     echo 'initial spotweb configuration done.'
 else    
