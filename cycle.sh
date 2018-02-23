@@ -1,5 +1,7 @@
 #!/bin/bash
 
+initfile=$(echo $HOST_HOSTNAME)\.database.initialised
+
 if [[ -z "$SPOTWEB_DB_TYPE" ]]; then
     SPOTWEB_DB_TYPE="mysql"
 fi
@@ -16,7 +18,6 @@ fi
 if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" && -n "$SPOTWEB_DB_USER" && -n "$SPOTWEB_DB_PASS" ]]; then
     # echo "Spotweb db params are set. Creating database configuration ..."
     if [[ -s /config/dbsettings.inc.php ]]; then
-    	initfile=$(echo $HOST_HOSTNAME)\spotweb.database.initialised
 	if [ ! -f /config/$(echo $initfile) ]; then
 	    touch /config/$(echo $initfile) 
             # this should just run once, as dbsettings.inc.php started empty ...
@@ -24,6 +25,7 @@ if [[ -n "$SPOTWEB_DB_TYPE" && -n "$SPOTWEB_DB_HOST" && -n "$SPOTWEB_DB_NAME" &&
             /usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
 	    echo "> Database upgrade done." 
 	    echo "Finished $(date)" >> /config/$(echo $initfile)
+	fi
        	# echo "$(date +%S)"
 	# every 2 mins, reapply the dbsettings
 	if [ $(($(date +%M) % 2)) = 0 ]; then
@@ -49,9 +51,9 @@ fi
 if [ $((`date +%M` % 10)) = 0 ]; then
     if [ $((`date +%S` % 60)) = 0 ]; then
   	# every 10 minutes  
-	/usr/bin/php /var/www/spotweb/retrieve.php >/config/retrieve.log 2>&1
+	if [[ -s /config/$(echo $initfile) ]]; then
+	    /usr/bin/php /var/www/spotweb/retrieve.php >/config/retrieve.log 2>&1
+	fi
     fi
 fi
 
-# Run database update
-#/usr/bin/php /var/www/spotweb/bin/upgrade-db.php >/dev/null 2>&1
