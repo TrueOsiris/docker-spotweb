@@ -1,4 +1,5 @@
 # spotweb
+[![Docker Pulls](https://img.shields.io/docker/pulls/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) [![Docker Stars](https://img.shields.io/docker/stars/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) [![Docker Automated buil](https://img.shields.io/docker/automated/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) [![Docker Build Statu](https://img.shields.io/docker/build/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) ![GitHub last commit](https://img.shields.io/github/last-commit/trueosiris/docker-spotweb.svg)
 
 Base webserver with 2 external volumes : /config & /www \
 volume /config holds all apache2 & php7.0 config files \
