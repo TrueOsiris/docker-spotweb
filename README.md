@@ -1,5 +1,12 @@
 # spotweb
-[![Docker Pulls](https://img.shields.io/docker/pulls/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) [![Docker Stars](https://img.shields.io/docker/stars/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) [![Docker Automated buil](https://img.shields.io/docker/automated/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) [![Docker Build Statu](https://img.shields.io/docker/build/trueosiris/spotweb.svg)](https://hub.docker.com/r/trueosiris/spotweb/) ![GitHub last commit](https://img.shields.io/github/last-commit/trueosiris/docker-spotweb.svg)
+![Trueosiris Rules](https://img.shields.io/badge/trueosiris-rules-f08060) 
+[![Docker Pulls](https://badgen.net/docker/pulls/trueosiris/spotweb?icon=docker&label=pulls)](https://hub.docker.com/r/trueosiris/spotweb/) 
+[![Docker Stars](https://badgen.net/docker/stars/trueosiris/spotweb?icon=docker&label=stars)](https://hub.docker.com/r/trueosiris/spotweb/) 
+[![Docker Image Size](https://badgen.net/docker/size/trueosiris/spotweb?icon=docker&label=image%20size)](https://hub.docker.com/r/trueosiris/spotweb/) 
+![Github stars](https://badgen.net/github/stars/trueosiris/docker-spotweb?icon=github&label=stars) 
+![Github forks](https://badgen.net/github/forks/trueosiris/docker-spotweb?icon=github&label=forks) 
+![Github issues](https://img.shields.io/github/issues/TrueOsiris/docker-spotweb)
+![Github last-commit](https://img.shields.io/github/last-commit/TrueOsiris/docker-spotweb)
 
 Base webserver with 2 external volumes : /config & /www.
 Volume /config holds all apache2 & php7.0 config files.

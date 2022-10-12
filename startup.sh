@@ -7,7 +7,7 @@ if [ -f /config/$(echo $initfile) ]; then
 else    
     chmod -R 777 /www 2>&1
     echo "> Cloning into /www/spotweb ..."
-    git clone https://github.com/TrueOsiris/spotweb.git /www/spotweb 2>&1
+    git clone https://github.com/spotweb/spotweb.git /www/spotweb 2>&1
     echo "> Cloning done."
     echo "> Changing ownership of on /www/spotweb ..."
     chown -R www-data:www-data /www/spotweb
